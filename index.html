@@ -41,7 +41,7 @@
                         <input type="text" class="form-control" id="prix" placeholder="Price">
                     </div>
                     <div class="mb-3">
-                        <input type="number" class="form-control" id="count" placeholder="Count">
+                        <input type="number" class="form-control" id="count" placeholder="Count" onkeyup="err(this)">
                         <p id="count-err"></p>
                     </div>
                     <div id="edit"></div>
@@ -49,6 +49,7 @@
                     <br>
                     <div id="btn-sup">
                     </div>
+                   
                 </div>
                 <div>
                     <img src="stock.png" alt="" class="img-fluid">
@@ -56,6 +57,9 @@
             </div>
         </form>
     </section>
+    <div class="container mb-3 w-50">
+      <input type="text" class="form-control bg-info text-dark" id="search" placeholder="Search by name" onkeyup="Search(this)">
+  </div>
     <section class="container bg-dark">
         <table class="table text-light" id="tab">
                 <thead class="text-center">
@@ -71,6 +75,6 @@
                 </tbody>
         </table>
     </section>
-<script src="ex2.js"></script>
+<script src="stock.js"></script>
 </body>
 </html>

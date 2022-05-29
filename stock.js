@@ -11,12 +11,12 @@ if (localStorage.product != null){
 function add(){
  if(name.value !="" && prix.value !="" && count.value !=""){
     let info = {
-        name : name.value,
+        name : name.value.toLowerCase(),
         prix : prix.value,
         count: count.value
     }
     
-    if(count.value > 0){
+    if(0< count.value && count.value< 101){
         document.getElementById('count').style.borderColor=''
         document.getElementById('count-err').innerHTML=""
         for(var j=0 ; j<count.value ; j++){
@@ -32,9 +32,9 @@ show()
 }
 function show(){
 let table = ''
-for(var i in data){
+for(var i=0 ; i<data.length ; i++){
 table += ` <tr>
-<th scope="row">${i}</th>
+<th scope="row">${i+1}</th>
 <td id="td1">${data[i].name}</td>
 <td  id="td2">${data[i].prix}$</td>
 <td><button type="submit" class="btn btn-success" onclick="Edit(${i})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -50,7 +50,7 @@ table += ` <tr>
 document.getElementById('t').innerHTML=table
 let btns = document.getElementById('btn-sup')
 if(data.length >0){
-    btns.innerHTML=`<button type="submit" class="btn btn-danger my-3" onclick="SupAll()" style="width:255px ;" id="delbtn">Delete ALL (${+i+1})</button></td>`
+    btns.innerHTML=`<button type="submit" class="btn btn-danger my-3" onclick="SupAll()" style="width:255px ;" id="delbtn">Delete ALL (${i})</button></td>`
     console.log(data.length)
     }else{
         btns.innerHTML = ""  
@@ -110,7 +110,7 @@ function Search(value){
     let table = ''
     console.log(value.value)
    for(var i=0 ; i<data.length ; i++){
-    if(data[i].name.includes(value.value)) {
+    if(data[i].name.includes(value.value.toLowerCase())) {
         table += ` <tr>
         <th scope="row">${i}</th>
         <td id="td1">${data[i].name}</td>
@@ -128,13 +128,16 @@ function Search(value){
    }
    document.getElementById('t').innerHTML=table
 }
-function err(err){
-    
-if(err.value ==0 || err.value <0 ){
+function err(err){  
+if(err.value ==0 || err.value <0){
     document.getElementById('count').style.borderColor="red"
     document.getElementById('count-err').style.color='red'
     document.getElementById('count-err').innerHTML="It must be greater than zero !!"
    
+    }else if(err.value >101 ){
+        document.getElementById('count').style.borderColor="red"
+    document.getElementById('count-err').style.color='red'
+    document.getElementById('count-err').innerHTML="It must be less than 101 !!"
     }else{
         document.getElementById('count').style.borderColor=""
     document.getElementById('count-err').style.color=''
@@ -142,4 +145,3 @@ if(err.value ==0 || err.value <0 ){
     }
 }
 show()
-

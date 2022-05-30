@@ -90,8 +90,8 @@ function Edit2(i,j){
     console.log(data[i].name,data[i].prix)
     document.getElementById("td1").innerHTML=name.value
     document.getElementById("td2").innerHTML=prix.value+"$"
-    data[i].name=name.value
-    data[j].prix=prix.value
+    data[i].name=name.value.toLowerCase()
+    data[j].prix=prix.value.toLowerCase()
     console.log(data)
     localStorage.setItem("product",JSON.stringify(data))
     document.getElementById('count').style.display='block'
